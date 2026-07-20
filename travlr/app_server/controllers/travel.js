@@ -1,8 +1,11 @@
 /* GET travel view */
 
+const trips = require('../data/trips.json');
+
 const travel = (req, res) => {
     res.render('travel', {
-        title: 'Travl Getaways'
+        title: 'Travlr Getaways',
+        trips: trips
     });
 };
 
