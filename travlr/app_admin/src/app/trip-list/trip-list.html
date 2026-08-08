@@ -1,0 +1,10 @@
+<h2>Available Trips</h2>
+
+<p>Total trips: {{ trips.length }}</p>
+
+<app-trip-card 
+    *ngFor = "let trip of trips"
+    [trip] = "trip">
+
+</app-trip-card>
+
