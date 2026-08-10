@@ -2,9 +2,20 @@
 
 <p>Total trips: {{ trips.length }}</p>
 
-<app-trip-card 
+<app-trip-card
+
     *ngFor = "let trip of trips"
-    [trip] = "trip">
+    [trip] = "trip"
+    (edit) = "editTrip($event)">
 
 </app-trip-card>
+
+<app-trip-edit
+
+    *ngIf = "selectedTrip"
+    [trip] = "selectedTrip">
+
+</app-trip-edit>
+
+
 

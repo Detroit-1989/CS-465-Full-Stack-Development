@@ -69,6 +69,43 @@ const tripsAddTrip = async (req, res) => {
     }
 };
 
+
+const tripsUpdate = async (req, res) => {
+
+    try {
+
+        const trip = await Trip.findById(req.params.tripCode);
+
+        if (!trip) {
+            return res
+                .status(404)
+                .json({ "message": "Trip not found" });
+        }
+
+        trip.name = req.body.name;
+        trip.length = req.body.length;
+        trip.start = req.body.start;
+        trip.resort = req.body.resort;
+        trip.perPerson = req.body.perPerson;
+        trip.image = req.body.image;
+        trip.description = req.body.description;
+
+        await trip.save();
+
+        res
+            .status(200)
+            .json(trip);
+
+    } catch (err) {
+
+        res
+            .status(500)
+            .json(err);
+
+    }
+
+};
+
 module.exports = {
-    tripsList, tripsFindByCode, tripsAddTrip
+    tripsList, tripsFindByCode, tripsAddTrip, tripsUpdate
 };

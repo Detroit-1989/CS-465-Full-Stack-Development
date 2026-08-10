@@ -1,17 +1,37 @@
-<img
-    [src] = "'http://localhost:3000/images/' + trip.image"
-    [alt] = "trip.name"
-    width = "300"
->
+<div class = "trip-card">
 
-<h3> {{ trip.name }} </h3>
+    <img
+        [src] = "'http://localhost:3000/images/' + trip.image"
+        [alt] = "trip.name"
+        class = "trip-image"
 
-<p><strong>Length:</strong> {{ trip.length }}</p>
+    >
 
-<p><strong>Resort:</strong> {{ trip.resort }}</p>
+    <h3>{{ trip.name }}</h3>
 
-<p><strong>Price:</strong> {{ trip.perPerson }}</p>
+    <p>
+        <strong>Resort:</strong>
+        {{ trip.resort }}
+    </p>
 
-<p> {{ trip.description }}</p>
+    <p>
+        <strong>Length:</strong>
+        {{ trip.length }} 
+    </p>
 
-<hr>
+    <p>
+        <strong>Price per person:</strong>
+        ${{ trip.perPerson }}
+    </p>            
+
+    <p>
+        {{ trip.description}}
+    </p>
+
+    <button 
+        type = "button"
+        (click) = "onEdit()" >
+        Edit Trip
+    </button>
+
+</div>

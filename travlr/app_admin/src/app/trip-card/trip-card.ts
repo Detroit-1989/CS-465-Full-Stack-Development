@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Trip } from '../models/trip';
 
@@ -9,6 +9,15 @@ import { Trip } from '../models/trip';
   templateUrl: './trip-card.html',
   styleUrl: './trip-card.css',
 })
+
+
 export class TripCard {
+  
   @Input() trip!: Trip;
+
+  @Output() edit = new EventEmitter<Trip>();
+
+  onEdit(): void {this.edit.emit(this.trip);
+  }
+
 }
