@@ -17,7 +17,11 @@ export class TripCard {
 
   @Output() edit = new EventEmitter<Trip>();
 
-  onEdit(): void {this.edit.emit(this.trip);
-  }
+  @Output() delete = new EventEmitter<Trip>();
+
+  onEdit(): void {this.edit.emit(this.trip);}
+
+  onDelete(): void {this.delete.emit(this.trip);}
+  
 
 }

@@ -10,4 +10,6 @@ router.post('/trips', ctrlTrips.tripsAddTrip);
 
 router.put('/trips/:tripCode', ctrlTrips.tripsUpdate);
 
+router.delete('/trips/:tripId', ctrlTrips.tripsDeleteTrip);
+
 module.exports = router;

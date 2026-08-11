@@ -2,11 +2,20 @@
 
 <p>Total trips: {{ trips.length }}</p>
 
+<app-trip-add
+
+  (added)="tripAdded($event)">
+  
+</app-trip-add>
+
+<hr>
+
 <app-trip-card
 
     *ngFor = "let trip of trips"
     [trip] = "trip"
-    (edit) = "editTrip($event)">
+    (edit) = "editTrip($event)"
+    (delete) = "deleteTrip($event)">
 
 </app-trip-card>
 
@@ -16,6 +25,8 @@
     [trip] = "selectedTrip">
 
 </app-trip-edit>
+
+
 
 
 
