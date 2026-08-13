@@ -22,7 +22,8 @@
 <app-trip-edit
 
     *ngIf = "selectedTrip"
-    [trip] = "selectedTrip">
+    [trip] = "selectedTrip"
+    (saved) = "tripUpdated($event)">
 
 </app-trip-edit>
 

@@ -37,3 +37,4 @@ process.on('SIGTERM', async () => {
 });
 
 require('../models/trips');
+require('../models/users');

@@ -44,6 +44,18 @@ export class TripList implements OnInit {
     this.cdr.markForCheck();
   }
 
+  tripUpdated(updatedTrip: Trip): void {
+    const index = this.trips.findIndex (trip => trip._id === updatedTrip._id);
+
+    if (index !== -1) {
+      this.trips[index] = updatedTrip;
+    }
+
+    this.selectedTrip = undefined;
+
+    this.cdr.markForCheck();
+  }
+
   deleteTrip(trip: Trip): void {
 
     const confirmed = confirm(`Delete ${trip.name}?`);
