@@ -1,7 +1,6 @@
 # CS-465-Full-Stack-Development - Travlr Getaways
 
 ## Project Overview
-gi
 
 Travlr Getaways is a full stack travel application that I developed throughout CS 465 coursework. The project includes a customer-facing website and a separate administrative single-page application (SPA). The application uses a Node.js and Express backend, MongoDB for persistent data storage, and Angular for the administrative interface. RESTful API endpoints connect the frontend applications to the backend and database. Security was incorporated into the administrative side of the application to provide authenticated access to protected functionality.
 
