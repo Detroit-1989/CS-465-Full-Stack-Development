@@ -2,32 +2,159 @@
 
 <p>Total trips: {{ trips.length }}</p>
 
-<app-trip-add
-
-  (added)="tripAdded($event)">
-  
+<app-trip-add (added)="tripAdded($event)">
 </app-trip-add>
 
 <hr>
 
-<app-trip-card
+<div class="container mt-4 mb-4">
 
-    *ngFor = "let trip of trips"
-    [trip] = "trip"
-    (edit) = "editTrip($event)"
-    (delete) = "deleteTrip($event)">
+  <h3>Find a Vacation Package</h3>
+
+  <div class="row g-3">
+
+    <!-- Resort Filter -->
+    <div class="col-md-3">
+
+      <label for="resortFilter"
+             class="form-label">
+        Resort
+      </label>
+
+      <select id="resortFilter"
+              class="form-select"
+              [(ngModel)]="selectedResort">
+
+        <option value="">All Resorts</option>
+
+        <option *ngFor="let resort of resorts"
+                [value]="resort">
+          {{ resort }}
+        </option>
+
+      </select>
+    </div>
+
+
+    <!-- Trip Length Filter -->
+    <div class="col-md-3">
+
+      <label for="lengthFilter"
+             class="form-label">
+        Trip Length
+      </label>
+
+      <select id="lengthFilter"
+              class="form-select"
+              [(ngModel)]="selectedLength">
+
+        <option value="">Any Length</option>
+
+        <option *ngFor="let length of tripLengths"
+                [value]="length">
+          {{ length }}
+        </option>
+
+      </select>
+    </div>
+
+
+    <!-- Maximum Price Filter -->
+    <div class="col-md-3">
+
+      <label for="priceFilter"
+             class="form-label">
+        Maximum Price
+      </label>
+
+      <input id="priceFilter"
+             type="number"
+             class="form-control"
+             [(ngModel)]="maxPrice"
+             placeholder="Example: 1500"
+             min="0">
+
+    </div>
+
+
+    <!-- Sorting Section -->
+    <div class="col-md-3">
+
+      <label for="sortFilter"
+             class="form-label">
+        Sort Results
+      </label>
+
+      <select id="sortFilter"
+              class="form-select"
+              [(ngModel)]="sortOrder">
+
+        <option value="">Default Order</option>
+        <option value="priceLowHigh">
+          Price: Low to High
+        </option>
+        <option value="priceHighLow">
+          Price: High to Low
+        </option>
+        <option value="nameAZ">
+          Name: A-Z
+        </option>
+
+      </select>
+
+    </div>
+
+  </div>
+
+
+  <div class="mt-3">
+
+    <button type="button"
+            class="btn btn-primary me-2"
+            (click)="applyFilters()">
+      Apply Filters
+    </button>
+
+    <button type="button"
+            class="btn btn-secondary"
+            (click)="resetFilters()">
+      Reset Filters
+    </button>
+
+  </div>
+
+
+  <div class="mt-3">
+
+    <strong>
+      {{ filteredTrips.length }}
+    </strong>
+
+    trip package(s) found
+
+  </div>
+
+</div>
+
+
+<div *ngIf="filteredTrips.length === 0"
+     class="alert alert-warning mt-3">
+
+  No vacation packages match the selected criteria.
+
+</div>
+
+
+<app-trip-card *ngFor="let trip of filteredTrips"
+               [trip]="trip"
+               (edit)="editTrip($event)"
+               (delete)="deleteTrip($event)">
 
 </app-trip-card>
 
-<app-trip-edit
 
-    *ngIf = "selectedTrip"
-    [trip] = "selectedTrip"
-    (saved) = "tripUpdated($event)">
+<app-trip-edit *ngIf="selectedTrip"
+               [trip]="selectedTrip"
+               (saved)="tripUpdated($event)">
 
 </app-trip-edit>
-
-
-
-
-
